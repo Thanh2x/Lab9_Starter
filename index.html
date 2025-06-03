@@ -99,14 +99,40 @@
 
 
   <script>
-    let form = document.querySelector('form');
+
+    class ZeroDivisionError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "ZeroDivisionError";
+      }
+    }
+
+    class EmptyInputError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "EmptyInputError";
+      }
+    }
+
     form.addEventListener('submit', e => {
       e.preventDefault();
       let output = document.querySelector('output');
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      try {
+        if (firstNum === "" || secondNum === "") {
+          throw new EmptyInputError("Inputs can't be empty");
+        }
+        else if (operator === "/" && Number(secondNum) === 0) {
+          throw new ZeroDivisionError("Can't divide by zero")
+        }
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      } catch (err) {
+        console.error("Invalid or unexpected input", err);
+      } finally {
+        console.log("Calculated");
+      }
     });
 
 
@@ -181,6 +207,10 @@
     errorBtns[14].addEventListener("click", () => {
       boomer();
     });
+
+    window.onerror = function (message, url, line, col, error) {
+      console.log(`${message}\n At ${line}:${col} of ${url}`);
+    };
 
 
   </script>
