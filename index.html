@@ -8,6 +8,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lab 9</title>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({
+      token: "97a292659bd344949a5b7e042014d8ca"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
 
   <style>
     button {
@@ -55,6 +62,9 @@
       width: 122px;
     }
   </style>
+
+
+
 </head>
 
 
@@ -100,6 +110,8 @@
 
   <script>
 
+    TrackJS.track('Testing TrackJS!');
+
     class ZeroDivisionError extends Error {
       constructor(message) {
         super(message);
@@ -132,7 +144,7 @@
       } catch (err) {
         console.error("Invalid or unexpected input", err);
       } finally {
-        console.log("Calculated");
+        console.log("Calculate Attempted");
       }
     });
 
