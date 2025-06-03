@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lab 9</title>
 
+
   <style>
     button {
       margin: 3px;
     }
 
+
     button:hover {
       cursor: pointer;
     }
+
 
     #first-num,
     #second-num {
       width: 60px;
     }
+
 
     output {
       border: 1px solid gray;
@@ -30,9 +35,11 @@
       width: 240px;
     }
 
+
     main {
       width: 800px;
     }
+
 
     #error-btns {
       column-gap: 5px;
@@ -42,12 +49,14 @@
       row-gap: 5px;
     }
 
+
     #error-btns>* {
       padding: 8px 2px;
       width: 122px;
     }
   </style>
 </head>
+
 
 <body>
   <main>
@@ -68,6 +77,7 @@
       </fieldset>
     </form>
 
+
     <section id="error-btns">
       <button>Console Log</button>
       <button>Console Error</button>
@@ -87,6 +97,7 @@
     </section>
   </main>
 
+
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -98,11 +109,82 @@
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
     });
 
+
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
+
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+
+    errorBtns[0].addEventListener("click", () => {
+      console.log("Console Log Demo");
+    });
+    errorBtns[1].addEventListener("click", () => {
+      console.error("Console Error Demo");
+    });
+    errorBtns[2].addEventListener("click", () => {
+      console.count("Console Count");
+    });
+    errorBtns[3].addEventListener("click", () => {
+      console.warn("Console Warn Button");
+    });
+    errorBtns[4].addEventListener("click", () => {
+      let a = 1;
+      console.assert(a === 2, "The number does not equal 2");
+    });
+    errorBtns[5].addEventListener("click", () => {
+      console.clear();
+    });
+    errorBtns[6].addEventListener("click", () => {
+      console.dir(document.head);
+    });
+    errorBtns[7].addEventListener("click", () => {
+      console.dirxml(document);
+    });
+    errorBtns[8].addEventListener("click", () => {
+      console.group("Group Demo");
+    });
+    errorBtns[9].addEventListener("click", () => {
+      console.groupEnd("Group Demo");
+    });
+    errorBtns[10].addEventListener("click", () => {
+      const sports = [
+        { name: "Basketball", goodAtIt: "Average", rating: "8/10" },
+        { name: "Soccer", goodAtIt: "Goat Status like messi", rating: "9/10" },
+        { name: "Badminton", goodAtIt: "Good enough", rating: "9/10" },
+        { name: "Volleyball", goodAtIt: "Abolutely horrendous", rating: "3/10" },
+      ];
+      console.table(sports);
+    });
+    errorBtns[11].addEventListener("click", () => {
+      console.time("Timer Button");
+    });
+    errorBtns[12].addEventListener("click", () => {
+      console.timeEnd("Timer Button");
+    });
+    function deepest() {
+      console.trace();
+    }
+    function deeper() {
+      deepest();
+    }
+    function deep() {
+      deeper();
+    }
+    function surface() {
+      deep();
+    }
+    errorBtns[13].addEventListener("click", () => {
+      surface();
+    });
+    errorBtns[14].addEventListener("click", () => {
+      boomer();
+    });
+
+
   </script>
 </body>
+
 
 </html>
