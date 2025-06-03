@@ -222,7 +222,8 @@
     });
 
     window.onerror = function (message, url, line, col, error) {
-      console.log(`${message}\n At ${line}:${col} of ${url}`);
+      console.log("Caught global Error");
+      return true;
     };
 
 
